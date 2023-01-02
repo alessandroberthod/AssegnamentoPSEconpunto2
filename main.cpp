@@ -6,7 +6,7 @@ using std::endl;
 using std::vector;
 #include "Robot.h"
 #include "Obstacle.h"
-#include "Cell.h"
+#include "Coordinate.h"
 
 int main()
 {

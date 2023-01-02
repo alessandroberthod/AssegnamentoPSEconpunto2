@@ -3,7 +3,7 @@
 
 #include <ostream>
 //#include "Obstacle.h"
-#include "Cell.h"
+#include "Coordinate.h"
 #include "Obstacle.h"
 
 class Robot {
@@ -22,8 +22,8 @@ public:
     double pos_yRgoal() const { return yRgoal; };
 
     //funzioni membro, che modificano l'oggetto
-    Cell Robcellcurrent(double dimGrid);
-    Cell Robcellgoal(double dimGrid);
+    Coordinate curr_rob_lower_left_corner_cell_coord(double dimGrid);
+    Coordinate goal_rob_lower_left_corner_cell_coord(double dimGrid);
     void move_robot_to_goal(double _eta, double _zeta, double _max_dist_infl, double dimGrid, const vector<Obstacle>& vecobst_pp);
 
 private:

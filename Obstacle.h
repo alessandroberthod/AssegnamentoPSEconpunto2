@@ -4,10 +4,10 @@
 #include <ostream> // se necessario stampare gli ostacoli
 #include <vector>
 //#include "Robot.h"
-//#include "Cell.h"
+//#include "Coordinate.h"
 using std::vector;
 
-class Cell; //forward declaration della classe Cell per poter impiegare tipo Cell nelle fz membro
+class Coordinate; //forward declaration della classe Coordinate per poter impiegare tipo Coordinate nelle fz membro
 
 class Obstacle {
 public:
@@ -20,7 +20,7 @@ public:
     double y1o() const {return y1;};
     double x2o() const {return x2;};
     double y2o() const {return y2;};
-    vector<Cell> outline_obstacle_cells(double dimGrid) const;
+    vector<Coordinate> outline_obstacle_coordinates(double dimGrid) const;
 
     //funzioni membro, che modificano l'oggetto
     void adapt_obstacle_to_grid(double dimGrid);
