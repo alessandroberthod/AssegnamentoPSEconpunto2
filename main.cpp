@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 using std::cout;
 using std::cin;
@@ -7,6 +8,30 @@ using std::vector;
 #include "Robot.h"
 #include "Obstacle.h"
 #include "Coordinate.h"
+
+vector<Coordinate> read_from_file(const std::string& filename) {
+
+    vector<Coordinate> coords_from_text;
+
+    // std::ifstream encapsulates the functionality of an 
+    // input file stream as a class, is created by
+    // providing a filename as its constructor argument
+    std::ifstream infile{filename};
+
+    while (!infile.eof()) {
+        double x, y;
+        infile >> x >> y;
+        if (infile.eof() || infile.fail() || infile.bad()) {
+            std::cerr << "Error in input or eof  \n";
+            break;
+        }
+        coords_from_text.push_back({x,y});
+        
+    }
+
+    return coords_from_text;
+
+}
 
 int main()
 {
@@ -83,6 +108,21 @@ int main()
     //Cell provapostvisione{141, 125};
     //double distanzaobstprovapostvisione;
     //distanzaobstprovapostvisione = provapostvisione.min_distance_actualrobotcell_all_obstacles_cells(dimG, vobs);
-    robot_1.move_robot_to_goal(10000.0, 1.0, 10.0, dimG, vobs);
+    //robot_1.move_robot_to_goal(10000.0, 1.0, 10.0, dimG, vobs);
+
+
+
+    //Salvo le coordinate inviate dai due sataletti all'interno di 2 vettori di coordinate
+    vector<Coordinate> goals_coords_from_sat1, goals_coords_from_sat2;
+    std::string filename{"sample_coordinates.txt"};
+    goals_coords_from_sat1 = read_from_file(filename);
+
+    for (auto pos = goals_coords_from_sat1.cbegin(); pos !=goals_coords_from_sat1.cend(); ++pos){
+
+        cout << '(' << (*pos).xCoord() << ',' << (*pos).yCoord() << ')' << endl;
+
+    }
+
+    return 0;
     
   }
